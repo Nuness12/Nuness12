@@ -15,6 +15,8 @@ Sou tecnólogo em Banco de Dados pela Impacta Tecnologia e tenho mais de três a
 - **Python** — conhecimentos intermediários de programação.
 - **Excel avançado** — consolidação de bases, relatórios e análise de indicadores.
 
+![Linguagens por repositório público](https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=Nuness12&theme=github_dark)
+
 ## Projeto em destaque
 
 **[Importação e formatação de dados](https://github.com/Nuness12/importacao-formatacao-de-dados)** — prática de importação e preparação de dados com T-SQL.
