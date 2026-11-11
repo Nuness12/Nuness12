@@ -1,0 +1,47 @@
+name: Atualizar cartões do perfil
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 9 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  atualizar-cartoes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Criar pasta das imagens
+        run: mkdir -p assets
+
+      - name: Gerar cartão de estatísticas
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: stats
+          options: "username=Nuness12&show_icons=true&bg_color=202436&title_color=8CC8FF&text_color=5FF7E5&icon_color=D7A8FF&border_color=ABB2C4"
+          path: assets/github-stats.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fail_on_error: true
+
+      - name: Gerar cartão de linguagens
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: top-langs
+          options: "username=Nuness12&layout=compact&langs_count=6&size_weight=0&count_weight=1&exclude_repo=Nuness12&bg_color=202436&title_color=8CC8FF&text_color=5FF7E5&border_color=ABB2C4"
+          path: assets/top-languages.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fail_on_error: true
+
+      - name: Salvar imagens na main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/github-stats.svg assets/top-languages.svg
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Atualiza cartões do perfil"
+          git push
